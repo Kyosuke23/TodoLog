@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct TodoLogApp: App {
+struct TodoLoggerApp: App {
+    let persistenceController = PersistenceController()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(UserData())
         }
     }
 }
