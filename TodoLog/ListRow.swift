@@ -13,11 +13,10 @@ struct ListRow: View {
     @State var title: String
     @State var checked: Bool
     @State var memo: String
-    @State var sheet = false
     
     var body: some View {
         HStack {
-            if self.checked {
+            if (self.checked) {
                 Text("☑︎")
                 Text(self.title)
                     .strikethrough()
@@ -27,6 +26,13 @@ struct ListRow: View {
                 Text("□")
                 Text(self.title)
                     .foregroundColor(.black)
+            }
+            Spacer()
+            Button(action: {
+                self.userData.isModalEdit = true
+            })
+            {
+                Image(systemName: "chevron.right")
             }
         }
     }

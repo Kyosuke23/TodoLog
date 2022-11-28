@@ -40,13 +40,36 @@ struct TaskList: View {
     
     var body: some View {
         List {
-            ForEach(tasks) { task in
+            ForEach(self.tasks) { task in
                 Button(action: {
                     self.checkTask(task: task)
                     print(task)
                 })
                 {
-                    ListRow(id: task.id!, title: task.title!, checked: task.checked, memo: task.memo!)
+//                    ListRow(id: task.id!, title: task.title!, checked: task.checked, memo: task.memo!)
+                    HStack {
+                        if (task.checked) {
+                            Text("☑︎")
+                            Text(task.title!)
+                                .strikethrough()
+                                .fontWeight(.ultraLight)
+                                .foregroundColor(.black)
+                        } else {
+                            Text("□")
+                            Text(task.title!)
+                                .foregroundColor(.black)
+                        }
+                        Spacer()
+                        Button(action: {
+                            self.userData.isModalEdit = true
+                        })
+                        {
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .sheet(isPresented: $userData.isModalEdit) {
+                        EditModalView(id: task.id!, title: task.title!, memo: task.memo!)
+                    }
                 }
             }.onDelete(perform: deleteTask)
 

@@ -11,4 +11,5 @@ class UserData: ObservableObject {
     @Published var title: String = ""
     @Published var isEditing: Bool = false
     @Published var date = Date()
+    @Published var isModalEdit: Bool = false
 }

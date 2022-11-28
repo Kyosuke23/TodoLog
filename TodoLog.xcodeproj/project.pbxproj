@@ -18,6 +18,7 @@
 		6C52C8312931D7DD009DC766 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C52C8302931D7DD009DC766 /* ListRow.swift */; };
 		6C52C8332931D7F4009DC766 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C52C8322931D7F4009DC766 /* TaskList.swift */; };
 		6C52C8352931D80C009DC766 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C52C8342931D80C009DC766 /* Util.swift */; };
+		6C52C8372934901F009DC766 /* EditModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C52C8362934901E009DC766 /* EditModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		6C52C8302931D7DD009DC766 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		6C52C8322931D7F4009DC766 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		6C52C8342931D80C009DC766 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		6C52C8362934901E009DC766 /* EditModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		6C52C8182931D708009DC766 /* TodoLog */ = {
 			isa = PBXGroup;
 			children = (
+				6C52C8362934901E009DC766 /* EditModalView.swift */,
 				6C52C8192931D708009DC766 /* TodoLogApp.swift */,
 				6C52C81B2931D708009DC766 /* ContentView.swift */,
 				6C52C8272931D730009DC766 /* TodoLog.xcdatamodeld */,
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C52C8372934901F009DC766 /* EditModalView.swift in Sources */,
 				6C52C8332931D7F4009DC766 /* TaskList.swift in Sources */,
 				6C52C8352931D80C009DC766 /* Util.swift in Sources */,
 				6C52C82D2931D7A9009DC766 /* Draft.swift in Sources */,
