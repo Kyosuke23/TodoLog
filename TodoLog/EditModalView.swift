@@ -30,7 +30,7 @@ struct EditModalView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // タイトル欄
+                // タイトル設定
                 Text("タイトル")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("タスクを入力してください", text: $title)
@@ -40,7 +40,7 @@ struct EditModalView: View {
                             self.nameFieldIsForcused = true
                         }
                     }
-                // メモ欄
+                // メモ設定
                 Text("メモ")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("メモを入力してください", text: $memo)
@@ -61,6 +61,7 @@ struct EditModalView: View {
                     }) {
                         Text("保存")
                     }
+                    .disabled(self.title.isEmpty)
                 }
             }
         }
@@ -68,6 +69,10 @@ struct EditModalView: View {
     
     // タスクの更新処理
     func updateTask() {
+        // 入力チェック
+        if (self.title.isEmpty) {
+            return
+        }
         // id指定でタスク情報を検策
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         fetchRequest.predicate = NSPredicate(format: "self.id == %@", self.id as NSUUID as CVarArg)
