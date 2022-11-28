@@ -23,7 +23,7 @@ struct ContentView: View {
         NavigationView {
             // Todoリスト部
             TaskList(date: self.userData.date)
-            .navigationTitle("Todoリスト")
+//            .navigationTitle("Todoリスト")
             .toolbar {
                 // 日付表示部
                 ToolbarItem(placement: .principal) {
@@ -41,6 +41,8 @@ struct ContentView: View {
                         }
                     }
                 }
+                
+                // タスク追加ボタン
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         self.userData.title = ""
@@ -50,6 +52,7 @@ struct ContentView: View {
                             .font(.title)
                     }
                 }
+                
                 ToolbarItemGroup(placement: .bottomBar) {
                     // バックワードボタン
                     Button(action: {
