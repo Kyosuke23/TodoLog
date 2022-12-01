@@ -17,12 +17,19 @@ struct TaskList: View {
     @EnvironmentObject
     var userData: UserData
     
+    var id: UUID = UUID()
+    var title: String = ""
+    var memo: String = ""
+    var taskDateTime: Date = Date()
+    var taskDateFlg: Bool = false
+    var taskTimeFlg: Bool = false
+
     init(date: Date) {
         // 表示日付の時刻を0に変換
         let zeroDate = Util.getZeroTimeDate(date: date)
         // 抽出条件
         let predicate = NSPredicate(
-            format: "self.createdAt between {%@ , %@}",
+            format: "self.taskDateTime between {%@ , %@}",
             zeroDate,
             NSDate(timeInterval: 24 * 60 * 60 - 1, since: zeroDate as Date)
         )
@@ -32,8 +39,7 @@ struct TaskList: View {
         self.fetchRequest = FetchRequest<Task>(
             entity: Task.entity(),
             sortDescriptors: sortDescriptors,
-            predicate: predicate,
-            animation: .default
+            predicate: predicate
         )
     }
     
@@ -43,10 +49,8 @@ struct TaskList: View {
             ForEach(self.tasks) { task in
                 Button(action: {
                     self.checkTask(task: task)
-                    print(task)
                 })
                 {
-//                    ListRow(id: task.id!, title: task.title!, checked: task.checked, memo: task.memo!)
                     HStack {
                         if (task.checked) {
                             Text("☑︎")
@@ -60,15 +64,24 @@ struct TaskList: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
+                        if (task.taskTimeFlg) {
+                            Text(Util.dateToString(date: task.taskDateTime!, format: "HH:mm"))
+                                .fontWeight(.thin)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        Spacer()
                         Button(action: {
                             self.userData.isModalEdit = true
+                            self.userData.updModalId = task.id!
+                            self.userData.updModalTitle = task.title!
+                            self.userData.updModalMemo = task.memo!
+                            self.userData.updModalTaskDateTime = task.taskDateTime!
+                            self.userData.updModalTaskDateFlg = task.taskDateFlg
+                            self.userData.updModalTaskTimeFlg = task.taskTimeFlg
                         })
                         {
                             Image(systemName: "chevron.right")
                         }
-                    }
-                    .sheet(isPresented: $userData.isModalEdit) {
-                        EditModalView(id: task.id!, title: task.title!, memo: task.memo!)
                     }
                 }
             }.onDelete(perform: deleteTask)
@@ -76,6 +89,20 @@ struct TaskList: View {
             if (self.userData.isEditing) {
                 Draft()
             }
+        }
+        .sheet(isPresented: $userData.isModalEdit) {
+            EditModalView(
+                id: self.userData.updModalId
+                , title: self.userData.updModalTitle
+                , memo: self.userData.updModalMemo
+                , taskDateTime: self.userData.updModalTaskDateTime
+                , datePicker: self.userData.updModalTaskDateTime
+                , timePicker: self.userData.updModalTaskDateTime
+                , taskDateFlg: self.userData.updModalTaskDateFlg
+                , taskTimeFlg: self.userData.updModalTaskTimeFlg
+                , isDateEditing: self.userData.updModalTaskDateFlg
+                , isTimeEditing: self.userData.updModalTaskTimeFlg
+            )
         }
     }
     
@@ -104,9 +131,9 @@ struct TaskList: View {
     }
 }
 
-struct TaskList_Previews: PreviewProvider {
-    static var previews: some View {
-        TaskList(date: Date())
-    }
-}
+//struct TaskList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TaskList(date: Date())
+//    }
+//}
 

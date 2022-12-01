@@ -45,6 +45,9 @@ struct Draft: View {
         newTask.memo = ""
         newTask.checked = false
         newTask.createdAt = Date()
+        newTask.taskDateTime = newTask.createdAt
+        newTask.taskDateFlg = false
+        newTask.taskTimeFlg = false
         
         // タスクの保存処理
         do {

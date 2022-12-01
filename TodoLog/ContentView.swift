@@ -23,11 +23,10 @@ struct ContentView: View {
         NavigationView {
             // Todoリスト部
             TaskList(date: self.userData.date)
-//            .navigationTitle("Todoリスト")
             .toolbar {
                 // 日付表示部
                 ToolbarItem(placement: .principal) {
-                    Text(Util.getStrDate(date: self.userData.date))
+                    Text(Util.dateToString(date: self.userData.date, format: "yyyy/MM/dd(EEE)"))
                 }
                 
                 // カレンダー遷移ボタン

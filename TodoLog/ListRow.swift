@@ -40,6 +40,11 @@ struct ListRow: View {
 
 struct ListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ListRow(id: UUID(), title: "料理", checked: false, memo: "テストメモ")
+        ListRow(
+            id: UUID()
+            , title: "料理"
+            , checked: false
+            , memo: "テストメモ"
+        )
     }
 }
