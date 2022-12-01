@@ -44,7 +44,7 @@ struct Draft: View {
         newTask.title = self.userData.title
         newTask.memo = ""
         newTask.checked = false
-        newTask.createdAt = Date()
+        newTask.createdAt = self.userData.date
         newTask.taskDateTime = newTask.createdAt
         newTask.taskDateFlg = false
         newTask.taskTimeFlg = false

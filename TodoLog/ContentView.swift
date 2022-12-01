@@ -31,12 +31,12 @@ struct ContentView: View {
                 
                 // カレンダー遷移ボタン
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {}) {
+                    NavigationLink {
+                        CalendarView()
+                    } label: {
                         HStack {
                             Image(systemName: "chevron.backward")
-                                .disabled(true)
                             Text("Calendar")
-                                .disabled(true)
                         }
                     }
                 }
